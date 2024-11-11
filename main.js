@@ -53,7 +53,45 @@ tr.appendChild(evszam);
 
 kiir(array);
 
+
+const form = document.getElementById('form')
+
+form.addEventListener('submit',function(e){
+    const uralkod_nev = document.getElementById('uralkodo_nev')
+    const esemeny1 = document.getElementById('esemeny1');
+    const evszam1 = document.getElementById('evszam1');
+    const esemeny2 = document.getElementById('esemeny2');
+    const evszam2 = document.getElementById('evszam2');
+
+
+    e.preventDefault();
+    const uralkod_nev_value = uralkod_nev.value;
+    const esemeny1_value = esemeny1.value;
+    const evszam1_value = evszam1.value;
+    const esemeny2_value = esemeny2.value;
+    const evszam2_value = evszam2.value;
+
+    const uj_adatok = [
+        {
+        uralkod : uralkod_nev_value,
+        esemeny : esemeny1_value,
+        esemeny2 : esemeny2_value,
+        evszam : evszam1_value,
+        evszam2 : evszam2_value
+        }
+    ]
+
+    array.push(uj_adatok);
+    kiir(array);
+})
+
+form.reset();
+
+
+
+
 function kiir(asd) {
+
     for (let adat of asd) {
         const new_tr = document.createElement('tr');
 
@@ -90,4 +128,7 @@ function kiir(asd) {
             tbody.appendChild(plusz_sor);
         }
     }
+
+
+    
 }
