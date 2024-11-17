@@ -71,11 +71,15 @@ form.addEventListener('submit',function(e){
     const esemeny2_value = esemeny2.value;
     const evszam2_value = evszam2.value;
 
+<<<<<<< HEAD
     if(error(uralkod_nev, esemeny1, evszam1)){
        if(error2(esemeny2, evszam2) || error(uralkod_nev, esemeny1, evszam1)){
 
 
         uj_adatok  = 
+=======
+    const uj_adatok = [
+>>>>>>> c3d5a7f7c4645b8933790c27fdfb48f9bfddbf4d
         {
         uralkod : uralkod_nev_value,
         esemeny : esemeny1_value,
@@ -83,6 +87,7 @@ form.addEventListener('submit',function(e){
         evszam : evszam1_value,
         evszam2 : evszam2_value
         }
+<<<<<<< HEAD
     
 
         array.push(uj_adatok);
@@ -95,12 +100,25 @@ form.addEventListener('submit',function(e){
 })
 
 
+=======
+    ]
+
+    array.push(uj_adatok);
+    kiir(array);
+})
+
+form.reset();
+>>>>>>> c3d5a7f7c4645b8933790c27fdfb48f9bfddbf4d
 
 
 
 
 function kiir(asd) {
+<<<<<<< HEAD
     tbody.innerHTML = '';
+=======
+
+>>>>>>> c3d5a7f7c4645b8933790c27fdfb48f9bfddbf4d
     for (let adat of asd) {
         
         const new_tr = document.createElement('tr');
@@ -142,6 +160,7 @@ function kiir(asd) {
 
 
     
+<<<<<<< HEAD
 }
 
 function error(nev, esemeny, ev){
@@ -167,4 +186,6 @@ function error2(esemeny, ev){
     }
 
     return valasz;
+=======
+>>>>>>> c3d5a7f7c4645b8933790c27fdfb48f9bfddbf4d
 }
