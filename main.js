@@ -53,8 +53,56 @@ tr.appendChild(evszam);
 
 kiir(array);
 
+
+const form = document.getElementById('form')
+
+form.addEventListener('submit',function(e){
+    const uralkod_nev = document.getElementById('uralkodo_nev')
+    const esemeny1 = document.getElementById('esemeny1');
+    const evszam1 = document.getElementById('evszam1');
+    const esemeny2 = document.getElementById('esemeny2');
+    const evszam2 = document.getElementById('evszam2');
+
+
+    e.preventDefault();
+    const uralkod_nev_value = uralkod_nev.value;
+    const esemeny1_value = esemeny1.value;
+    const evszam1_value = evszam1.value;
+    const esemeny2_value = esemeny2.value;
+    const evszam2_value = evszam2.value;
+
+    if(error(uralkod_nev, esemeny1, evszam1)){
+       if(error2(esemeny2, evszam2) || error(uralkod_nev, esemeny1, evszam1)){
+
+
+        uj_adatok  = 
+        {
+        uralkod : uralkod_nev_value,
+        esemeny : esemeny1_value,
+        esemeny2 : esemeny2_value,
+        evszam : evszam1_value,
+        evszam2 : evszam2_value
+        }
+    
+
+        array.push(uj_adatok);
+        kiir(array);
+        form.reset();
+       }
+    }
+
+    
+})
+
+
+
+
+
+
 function kiir(asd) {
+    tbody.innerHTML = '';
     for (let adat of asd) {
+        
         const new_tr = document.createElement('tr');
 
         
@@ -89,5 +137,34 @@ function kiir(asd) {
 
             tbody.appendChild(plusz_sor);
         }
+        
     }
+
+
+    
+}
+
+function error(nev, esemeny, ev){
+    let valasz = true;
+
+    if(nev.value === '' || esemeny.value === '' || ev.value === ''){
+        valasz = false;
+        let error = document.getElementById('error');
+        error.value = "nincs megadva valami";
+    }   
+
+    return valasz;
+
+}
+
+function error2(esemeny, ev){
+    let valasz = true;
+
+    if(esemeny.value === '' || ev.value === ''){
+        valasz = false;
+        let error = document.getElementById('error');
+        error.value = "nincs megadva valami";
+    }
+
+    return valasz;
 }
