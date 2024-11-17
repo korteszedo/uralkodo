@@ -56,43 +56,32 @@ kiir(array);
 
 const form = document.getElementById('form')
 
-form.addEventListener('submit',function(e){
-    const uralkod_nev = document.getElementById('uralkodo_nev')
+form.addEventListener('submit', function (e) {
+    const uralkod_nev = document.getElementById('uralkodo_nev');
     const esemeny1 = document.getElementById('esemeny1');
     const evszam1 = document.getElementById('evszam1');
     const esemeny2 = document.getElementById('esemeny2');
     const evszam2 = document.getElementById('evszam2');
 
-
     e.preventDefault();
-    const uralkod_nev_value = uralkod_nev.value;
-    const esemeny1_value = esemeny1.value;
-    const evszam1_value = evszam1.value;
-    const esemeny2_value = esemeny2.value;
-    const evszam2_value = evszam2.value;
 
-    if(error(uralkod_nev, esemeny1, evszam1)){
-       if(error2(esemeny2, evszam2) || error(uralkod_nev, esemeny1, evszam1)){
-
-
-        uj_adatok  = 
-        {
-        uralkod : uralkod_nev_value,
-        esemeny : esemeny1_value,
-        esemeny2 : esemeny2_value,
-        evszam : evszam1_value,
-        evszam2 : evszam2_value
-        }
     
+
+    if (error(uralkod_nev, esemeny1, evszam1) && error2(esemeny2, evszam2)) {
+        const uj_adatok = {
+            uralkod: uralkod_nev.value,
+            esemeny: esemeny1.value,
+            esemeny2: esemeny2.value,
+            evszam: evszam1.value,
+            evszam2: evszam2.value
+        };
 
         array.push(uj_adatok);
         kiir(array);
         form.reset();
-       }
     }
+});
 
-    
-})
 
 
 
@@ -157,13 +146,14 @@ function error(nev, esemeny, ev){
 
 }
 
-function error2(esemeny, ev){
+function error2(esemeny, ev) {
     let valasz = true;
+    let error = document.getElementById('error');
 
-    if(esemeny.value === '' || ev.value === ''){
+ 
+    if ((esemeny.value !== '' && ev.value === '') || (esemeny.value === '' && ev.value !== '')) {
         valasz = false;
-        let error = document.getElementById('error');
-        error.value = "nincs megadva valami";
+        error.value = "nincs kitoltve az evszam2 vagy az esemény2";
     }
 
     return valasz;
